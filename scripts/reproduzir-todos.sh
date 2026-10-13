@@ -24,13 +24,25 @@ C32=$(python3 -c "
 import csv
 print(','.join(f\"{l['repo']}:{l['issue']}\" for l in csv.DictReader(open('resultados/bugs-reproducao.csv')) if l['estado']=='reproduzido'))")
 C8="osal:453:2,cFE:1952:1,cFE:494:2,CF:118:1,CF:123:1,CF:473:1,CF:117:1,CS:71:1"
+# CASOS=repo:issue,... restringe a corrida a esses bugs (vazio = os 40)
+if [ -n "${CASOS:-}" ]; then
+  filtro() { python3 -c "
+import sys
+q = set(sys.argv[2].split(','))
+print(','.join(c for c in sys.argv[1].split(',') if ':'.join(c.split(':')[:2]) in q))" "$1" "$CASOS"; }
+  C32=$(filtro "$C32"); C8=$(filtro "$C8")
+fi
 
-echo "== $comp: 32 com os testes originais ($(date -Is))"
-python3 scripts/bugs-reproduzir.py resultados/2026-10-04-cfs-bugs-candidatos.csv \
-  --casos "$C32" --saida "$saida/$comp-32.csv"
-cp "$(ls -d resultados/brutos/bugs-* | tail -1)/tempos.tsv" "$saida/$comp-32-tempos.tsv"
+if [ -n "$C32" ]; then
+  echo "== $comp: com os testes originais ($(date -Is))"
+  python3 scripts/bugs-reproduzir.py resultados/2026-10-04-cfs-bugs-candidatos.csv \
+    --casos "$C32" --saida "$saida/$comp-32.csv"
+  cp "$(ls -d resultados/brutos/bugs-* | tail -1)/tempos.tsv" "$saida/$comp-32-tempos.tsv"
+fi
 
-echo "== $comp: 8 da triagem ($(date -Is))"
-python3 scripts/triagem-clang.py "$C8" "$saida/$comp-8.csv"
-cp "$(ls -d resultados/brutos/triagem-clang-* | tail -1)/tempos.tsv" "$saida/$comp-8-tempos.tsv"
+if [ -n "$C8" ]; then
+  echo "== $comp: da triagem ($(date -Is))"
+  python3 scripts/triagem-clang.py "$C8" "$saida/$comp-8.csv"
+  cp "$(ls -d resultados/brutos/triagem-clang-* | tail -1)/tempos.tsv" "$saida/$comp-8-tempos.tsv"
+fi
 echo "== $comp: fim ($(date -Is))"
