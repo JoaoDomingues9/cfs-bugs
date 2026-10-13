@@ -63,8 +63,7 @@ are in English.
 ## Requirements
 
 Linux with Docker, git and Python 3 (standard library only); about 2 GB of disk for the image
-and 2 GB for the cFS clones. Tested on aarch64 (reference machine) and on x86_64 (GitHub
-Actions, `ubuntu-24.04`).
+and 2 GB for the cFS clones. Tested on aarch64 (reference machine and GitHub Actions) and on x86_64 (GitHub Actions).
 
 ## Quick start
 
@@ -85,7 +84,10 @@ GitHub runner. Variables: `IMAGEM` (image tag), `JOBS` (parallel build jobs), `M
 | Platform | GCC | Clang |
 |---|---|---|
 | aarch64 (reference) | {rep('gcc_aarch64')}/{n} | {rep('clang_aarch64')}/{n} |
-| x86_64 (GitHub Actions) | {rep('gcc_x86_64')}/{n} | {rep('clang_x86_64')}/{n} |
+| aarch64 (GitHub Actions, `ubuntu-24.04-arm`) | {rep('gcc_aarch64_ci')}/{n} | {rep('clang_aarch64_ci')}/{n} |
+| x86_64 (GitHub Actions, `ubuntu-24.04`) | {rep('gcc_x86_64')}/{n} | {rep('clang_x86_64')}/{n} |
+
+Under Clang, `cfs-cf-123` and `cfs-cf-125` reproduce or not depending on the run (undefined behaviour). The GitHub runs used sequential builds (`JOBS=1`): with parallel builds the compiler warnings of different files can interleave in the log, which the classification compares between the two versions.
 
 ## One command per bug
 
@@ -109,7 +111,8 @@ GitHub runner. Variables: `IMAGEM` (image tag), `JOBS` (parallel build jobs), `M
 | `odc_type` | Orthogonal Defect Classification type of the fix |
 | `fix_flight_lines`, `fix_flight_files`, `fix_flight_hunks`, `fix_test_lines` | size of the fix (lines added + removed) in flight code and in test files |
 | `days_to_close` | days from the opening to the closing of the issue |
-| `gcc_aarch64`, `clang_aarch64`, `gcc_x86_64`, `clang_x86_64` | replay outcome per compiler and platform |
+| `gcc_aarch64`, `clang_aarch64` | replay outcome on the reference aarch64 machine |
+| `gcc_aarch64_ci`, `clang_aarch64_ci`, `gcc_x86_64`, `clang_x86_64` | replay outcome on GitHub-hosted runners |
 | `core`, `judgement` | core set membership; `solid`, `weak` or `events_only` |
 | `notes` | caveats |
 
