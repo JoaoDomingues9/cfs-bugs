@@ -1,5 +1,5 @@
-# Imagem de reprodução dos bugs do cFS: GCC 13 + Clang 18 (= imagem piloto-cfs:0.3 do piloto,
-# sem o Mull). Base fixada por digest (índice multi-arquitetura: amd64 e arm64).
+# Imagem de reprodução dos bugs do cFS: GCC 13 + Clang 18 (= imagem piloto-cfs:0.3 do piloto).
+# Base fixada por digest (índice multi-arquitetura: amd64 e arm64).
 FROM ubuntu:24.04@sha256:008173c23f95b170204355c12626cb5a965d779a7e1283b09e9cffbb1bf33ca3
 
 ARG DEBIAN_FRONTEND=noninteractive
