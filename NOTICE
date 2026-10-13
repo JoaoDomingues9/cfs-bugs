@@ -1,0 +1,13 @@
+The files resultados/triagem/*.patch are modifications of unit tests of NASA's core Flight
+System (cFS), https://github.com/nasa/cFS, which is licensed under the Apache License,
+Version 2.0. These patches are derived works distributed under the same license
+(http://www.apache.org/licenses/LICENSE-2.0). They were changed by the authors of this
+repository only to compile the tests of a bug fix against the pre-fix version (constants
+and names; see README.md).
+
+The reproduction scripts also apply three upstream cFS commits unchanged (cFE 9fd5a13c,
+cFE 76446971, elf2cfetbl d6b7568), fetched from the cFS repositories at run time.
+
+cFS is Copyright United States Government as represented by the Administrator of the
+National Aeronautics and Space Administration. No copyright is claimed in the United States
+under Title 17, U.S. Code.

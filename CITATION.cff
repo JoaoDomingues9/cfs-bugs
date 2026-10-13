@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this dataset, please cite the paper below."
+title: "cfs-bugs: reproducible bugs from NASA's core Flight System"
+authors:
+  - family-names: Domingues
+    given-names: João
+    affiliation: Universidade da Beira Interior
+  - family-names: Pombo
+    given-names: Nuno
+    affiliation: "Instituto de Telecomunicações, Universidade da Beira Interior"
+license: MIT
+repository-code: "https://github.com/JoaoDomingues9/cfs-bugs"
+preferred-citation:
+  type: conference-paper
+  title: "Reproducible Bugs in NASA's core Flight System: A Dataset and Challenges for Test Oracles"
+  authors:
+    - family-names: Domingues
+      given-names: João
+    - family-names: Pombo
+      given-names: Nuno
+  collection-title: "CASE2Space 2027 (co-located with ICSE 2027)"
+  year: 2027
+  notes: "Under review."
