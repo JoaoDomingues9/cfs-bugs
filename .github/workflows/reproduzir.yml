@@ -8,7 +8,7 @@ on:
     inputs:
       runners:
         description: 'Runners em JSON. x86_64: ubuntu-24.04; aarch64: ubuntu-24.04-arm'
-        default: '["ubuntu-24.04"]'
+        default: '["ubuntu-24.04", "ubuntu-24.04-arm"]'
       compiladores:
         description: 'Compiladores em JSON'
         default: '["gcc", "clang"]'
@@ -16,8 +16,8 @@ on:
         description: 'Só estes bugs (repo:issue,...); vazio = os 40'
         default: ''
       jobs:
-        description: 'Compilações em paralelo; vazio = nproc'
-        default: ''
+        description: 'Compilações em paralelo (1 = sequencial, recomendado: com -jN os avisos misturam-se no log); vazio = nproc'
+        default: '1'
 
 jobs:
   reproduzir:
