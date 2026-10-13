@@ -1,0 +1,16 @@
+diff --git a/unit-test/cf_cmd_tests.c b/unit-test/cf_cmd_tests.c
+index fd629a9..779867c 100644
+--- a/unit-test/cf_cmd_tests.c
++++ b/unit-test/cf_cmd_tests.c
+@@ -3,6 +3,11 @@
+ #include "cf_cmd.h"
+ #include "cf_events.h"
+ #include "cf_test_alt_handler.h"
++/* Triagem (API de "antes"): CF_EID_ERR_CMD_BAD_PARAM foi criado pela correção; valor da versão ac7a0fbd */
++#ifndef CF_EID_ERR_CMD_BAD_PARAM
++#define CF_EID_ERR_CMD_BAD_PARAM        139
++#endif
++
+ 
+ /*
+  * In order to properly instantiate buffers to pass to functions that

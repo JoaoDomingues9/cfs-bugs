@@ -1,0 +1,34 @@
+diff --git a/src/unit-test-coverage/portable/src/coveragetest-bsd-select.c b/src/unit-test-coverage/portable/src/coveragetest-bsd-select.c
+index 5862eb09..12c3b2c3 100644
+--- a/src/unit-test-coverage/portable/src/coveragetest-bsd-select.c
++++ b/src/unit-test-coverage/portable/src/coveragetest-bsd-select.c
+@@ -22,6 +22,12 @@
+ 
+ #include <OCS_sys_select.h>
+ 
++/* Triagem (adaptação à API de "antes"): código de erro criado pela correção, com o valor
++ * de src/os/inc/osapi.h da correção (312b7cc4). */
++#ifndef OS_ERR_OPERATION_NOT_SUPPORTED
++#define OS_ERR_OPERATION_NOT_SUPPORTED (-38)
++#endif
++
+ void Test_OS_SelectSingle_Impl(void)
+ {
+     /* Test Case For:
+diff --git a/src/unit-tests/oscore-test/ut_oscore_select_test.c b/src/unit-tests/oscore-test/ut_oscore_select_test.c
+index 13caa26f..6dc5ea13 100644
+--- a/src/unit-tests/oscore-test/ut_oscore_select_test.c
++++ b/src/unit-tests/oscore-test/ut_oscore_select_test.c
+@@ -10,6 +10,12 @@
+ 
+ #include "ut_oscore_select_test.h"
+ 
++/* Triagem (adaptação à API de "antes"): código de erro criado pela correção, com o valor
++ * de src/os/inc/osapi.h da correção (312b7cc4). */
++#ifndef OS_ERR_OPERATION_NOT_SUPPORTED
++#define OS_ERR_OPERATION_NOT_SUPPORTED (-38)
++#endif
++
+ /*--------------------------------------------------------------------------------*
+ ** Macros
+ **--------------------------------------------------------------------------------*/

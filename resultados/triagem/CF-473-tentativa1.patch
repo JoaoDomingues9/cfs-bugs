@@ -1,0 +1,16 @@
+diff --git a/unit-test/cf_cfdp_tests.c b/unit-test/cf_cfdp_tests.c
+index fab263a..9afe19c 100644
+--- a/unit-test/cf_cfdp_tests.c
++++ b/unit-test/cf_cfdp_tests.c
+@@ -26,6 +26,11 @@
+ #include "cf_cfdp_pdu.h"
+ #include "cf_cfdp_sbintf.h"
+ #include "cf_cfdp_dispatch.h"
++/* Triagem (API de "antes"): CF_EID_INF_CFDP_BUF_EXCEED foi criado pela correção; valor da versão 7b56ac9b */
++#ifndef CF_EID_INF_CFDP_BUF_EXCEED
++#define CF_EID_INF_CFDP_BUF_EXCEED (166)
++#endif
++
+ 
+ /*******************************************************************************
+ **

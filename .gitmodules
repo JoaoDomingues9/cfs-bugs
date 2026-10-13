@@ -1,0 +1,4 @@
+[submodule "cFS"]
+	path = cFS
+	url = https://github.com/nasa/cFS
+	ignore = untracked

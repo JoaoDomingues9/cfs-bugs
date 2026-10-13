@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Wrapper do gcc para a reprodução de bugs antigos (scripts/bugs-reproduzir.py).
+# Retira só o "-Werror" genérico: o código de 2019–2024 compilava sem avisos com o GCC da
+# época, mas o GCC 13 da imagem dá avisos novos que, com -Werror, partiam a build sem nada
+# ter a ver com o bug. Os "-Werror=<aviso>" específicos ficam como estão (por exemplo
+# implicit-function-declaration, que tem de continuar a ser erro para se detetar um teste
+# que chama uma função criada pela correção). Usado igual em "antes" e "depois".
+# Se WERROR_LOG estiver definido, os avisos das compilações em que se retirou o -Werror
+# são acrescentados a esse ficheiro (para registar quais deixaram de bloquear).
+args=() tinha=0
+for a in "$@"; do
+  if [ "$a" = "-Werror" ]; then tinha=1; else args+=("$a"); fi
+done
+if [ "$tinha" = 1 ] && [ -n "${WERROR_LOG:-}" ]; then
+  gcc "${args[@]}" 2> >(tee -a "$WERROR_LOG" >&2)
+  rc=$?
+  wait
+  exit $rc
+fi
+exec gcc "${args[@]}"

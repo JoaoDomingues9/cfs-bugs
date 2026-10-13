@@ -1,0 +1,6 @@
+# clones de trabalho, builds e logs das corridas
+trabalho/
+resultados/brutos/
+resultados/ci/
+__pycache__/
+.DS_Store

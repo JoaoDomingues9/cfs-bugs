@@ -1,0 +1,66 @@
+diff --git a/unit-test/cf_cmd_tests.c b/unit-test/cf_cmd_tests.c
+index 29c939c..19103f8 100644
+--- a/unit-test/cf_cmd_tests.c
++++ b/unit-test/cf_cmd_tests.c
+@@ -22,6 +22,61 @@
+ #include "cf_cmd.h"
+ #include "cf_events.h"
+ #include "cf_test_alt_handler.h"
++/* Triagem (API de "antes"): CF_EID_ERR_CMD_TX_FILE foi criado pela correção; valor da versão 6ca0e25f */
++#ifndef CF_EID_ERR_CMD_TX_FILE
++#define CF_EID_ERR_CMD_TX_FILE (157)
++#endif
++
++/* Triagem (API de "antes"): CF_EID_ERR_CMD_THAW foi criado pela correção; valor da versão 6ca0e25f */
++#ifndef CF_EID_ERR_CMD_THAW
++#define CF_EID_ERR_CMD_THAW (160)
++#endif
++
++/* Triagem (API de "antes"): CF_EID_ERR_CMD_PURGE_QUEUE foi criado pela correção; valor da versão 6ca0e25f */
++#ifndef CF_EID_ERR_CMD_PURGE_QUEUE
++#define CF_EID_ERR_CMD_PURGE_QUEUE (165)
++#endif
++
++/* Triagem (API de "antes"): CF_EID_ERR_CMD_PLAYBACK_DIR foi criado pela correção; valor da versão 6ca0e25f */
++#ifndef CF_EID_ERR_CMD_PLAYBACK_DIR
++#define CF_EID_ERR_CMD_PLAYBACK_DIR (158)
++#endif
++
++/* Triagem (API de "antes"): CF_EID_ERR_CMD_FREEZE foi criado pela correção; valor da versão 6ca0e25f */
++#ifndef CF_EID_ERR_CMD_FREEZE
++#define CF_EID_ERR_CMD_FREEZE (159)
++#endif
++
++/* Triagem (API de "antes"): CF_EID_ERR_CMD_ENABLE_POLLDIR foi criado pela correção; valor da versão 6ca0e25f */
++#ifndef CF_EID_ERR_CMD_ENABLE_POLLDIR
++#define CF_EID_ERR_CMD_ENABLE_POLLDIR (163)
++#endif
++
++/* Triagem (API de "antes"): CF_EID_ERR_CMD_ENABLE_DEQUEUE foi criado pela correção; valor da versão 6ca0e25f */
++#ifndef CF_EID_ERR_CMD_ENABLE_DEQUEUE
++#define CF_EID_ERR_CMD_ENABLE_DEQUEUE (161)
++#endif
++
++/* Triagem (API de "antes"): CF_EID_ERR_CMD_DISABLE_POLLDIR foi criado pela correção; valor da versão 6ca0e25f */
++#ifndef CF_EID_ERR_CMD_DISABLE_POLLDIR
++#define CF_EID_ERR_CMD_DISABLE_POLLDIR (164)
++#endif
++
++/* Triagem (API de "antes"): CF_EID_ERR_CMD_DISABLE_DEQUEUE foi criado pela correção; valor da versão 6ca0e25f */
++#ifndef CF_EID_ERR_CMD_DISABLE_DEQUEUE
++#define CF_EID_ERR_CMD_DISABLE_DEQUEUE (162)
++#endif
++
++/* Triagem (API de "antes"): CF_EID_ERR_CMD_CANCEL_CHAN foi criado pela correção; valor da versão 6ca0e25f */
++#ifndef CF_EID_ERR_CMD_CANCEL_CHAN
++#define CF_EID_ERR_CMD_CANCEL_CHAN (155)
++#endif
++
++/* Triagem (API de "antes"): CF_EID_ERR_CMD_ABANDON_CHAN foi criado pela correção; valor da versão 6ca0e25f */
++#ifndef CF_EID_ERR_CMD_ABANDON_CHAN
++#define CF_EID_ERR_CMD_ABANDON_CHAN (156)
++#endif
++
+ 
+ /*
+  * In order to properly instantiate buffers to pass to functions that

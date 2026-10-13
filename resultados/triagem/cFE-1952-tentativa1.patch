@@ -1,0 +1,26 @@
+diff --git a/modules/sb/ut-coverage/sb_UT.c b/modules/sb/ut-coverage/sb_UT.c
+index 93ed20c2..03285df9 100644
+--- a/modules/sb/ut-coverage/sb_UT.c
++++ b/modules/sb/ut-coverage/sb_UT.c
+@@ -41,6 +41,21 @@
+ #include "sb_UT.h"
+ #include "cfe_msg.h"
+ #include "cfe_core_resourceid_basevalues.h"
++/* Triagem (API de "antes"): CFE_SB_SEND_BAD_ARG_EID_BIT foi criado pela correção; valor da versão 92cc55e5 */
++#ifndef CFE_SB_SEND_BAD_ARG_EID_BIT
++#define CFE_SB_SEND_BAD_ARG_EID_BIT   5
++#endif
++
++/* Triagem (API de "antes"): CFE_SB_SEND_INV_MSGID_EID_BIT foi criado pela correção; valor da versão 92cc55e5 */
++#ifndef CFE_SB_SEND_INV_MSGID_EID_BIT
++#define CFE_SB_SEND_INV_MSGID_EID_BIT 6
++#endif
++
++/* Triagem (API de "antes"): CFE_SB_MSG_TOO_BIG_EID_BIT foi criado pela correção; valor da versão 92cc55e5 */
++#ifndef CFE_SB_MSG_TOO_BIG_EID_BIT
++#define CFE_SB_MSG_TOO_BIG_EID_BIT    7
++#endif
++
+ 
+ /*
+  * A method to add an SB "Subtest"

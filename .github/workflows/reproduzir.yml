@@ -1,0 +1,75 @@
+# Reprodução dos 40 bugs do cFS em runners do GitHub, com GCC e com Clang, num ambiente
+# limpo, e comparação com os resultados da máquina de referência (aarch64).
+# Só corre à mão (Actions > reproduzir > Run workflow).
+name: reproduzir
+
+on:
+  workflow_dispatch:
+    inputs:
+      runners:
+        description: 'Runners em JSON. x86_64: ubuntu-24.04; aarch64: ubuntu-24.04-arm'
+        default: '["ubuntu-24.04"]'
+
+jobs:
+  reproduzir:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: ${{ fromJSON(inputs.runners) }}
+        cc: [gcc, clang]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+      # Histórico completo do pacote e de todos os submódulos: os scripts procuram os commits
+      # "antes" e "depois" de cada bug e o pacote da época.
+      - name: Submódulos (cFS v7.0.1, histórico completo)
+        run: git submodule update --init --recursive
+      - name: Imagem
+        run: docker build -t cfs-bugs:ci docker/
+      - name: Versões
+        run: |
+          docker run --rm cfs-bugs:ci bash -c 'uname -m; gcc --version | head -1; clang-18 --version | head -1;
+            dpkg-query -W gcc-13 clang-18 llvm-18 libclang-rt-18-dev cmake lcov' > versoes.txt
+          docker image inspect cfs-bugs:ci --format '{{.Id}}' >> versoes.txt
+          echo "runner: $(nproc) CPUs, $(free -g | awk '/Mem/{print $2}') GiB" >> versoes.txt
+          df -h / >> versoes.txt
+          cat versoes.txt
+      - name: Reproduzir os 40 bugs (${{ matrix.cc }})
+        env:
+          IMAGEM: cfs-bugs:ci
+          MEMORIA: 12g
+        run: JOBS=$(nproc) scripts/reproduzir-todos.sh ${{ matrix.cc }} resultados/ci
+      - name: Juntar resultados
+        if: always()
+        run: |
+          mkdir -p resultados/ci
+          cp versoes.txt resultados/ci/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ci-${{ matrix.runner }}-${{ matrix.cc }}
+          path: resultados/ci/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: logs-${{ matrix.runner }}-${{ matrix.cc }}
+          path: resultados/brutos/
+          retention-days: 30
+
+  comparar:
+    needs: reproduzir
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ci-*
+          path: ci
+      - name: Comparar com a referência
+        run: python3 scripts/comparar-ci.py ci/* --csv ci-comparacao.csv >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: comparacao
+          path: ci-comparacao.csv

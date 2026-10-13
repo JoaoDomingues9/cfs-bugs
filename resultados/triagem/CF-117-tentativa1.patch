@@ -1,0 +1,71 @@
+diff --git a/unit-test/cf_cmd_tests.c b/unit-test/cf_cmd_tests.c
+index 96d30dd..cbef702 100644
+--- a/unit-test/cf_cmd_tests.c
++++ b/unit-test/cf_cmd_tests.c
+@@ -22,6 +22,66 @@
+ #include "cf_cmd.h"
+ #include "cf_events.h"
+ #include "cf_test_alt_handler.h"
++/* Triagem (API de "antes"): CF_EID_INF_CMD_WQ foi criado pela correção; valor da versão 5203bca1 */
++#ifndef CF_EID_INF_CMD_WQ
++#define CF_EID_INF_CMD_WQ (115)
++#endif
++
++/* Triagem (API de "antes"): CF_EID_INF_CMD_TX_FILE foi criado pela correção; valor da versão 5203bca1 */
++#ifndef CF_EID_INF_CMD_TX_FILE
++#define CF_EID_INF_CMD_TX_FILE (118)
++#endif
++
++/* Triagem (API de "antes"): CF_EID_INF_CMD_THAW foi criado pela correção; valor da versão 5203bca1 */
++#ifndef CF_EID_INF_CMD_THAW
++#define CF_EID_INF_CMD_THAW (121)
++#endif
++
++/* Triagem (API de "antes"): CF_EID_INF_CMD_SUSPRES foi criado pela correção; valor da versão 5203bca1 */
++#ifndef CF_EID_INF_CMD_SUSPRES
++#define CF_EID_INF_CMD_SUSPRES (114)
++#endif
++
++/* Triagem (API de "antes"): CF_EID_INF_CMD_PURGE_QUEUE foi criado pela correção; valor da versão 5203bca1 */
++#ifndef CF_EID_INF_CMD_PURGE_QUEUE
++#define CF_EID_INF_CMD_PURGE_QUEUE (128)
++#endif
++
++/* Triagem (API de "antes"): CF_EID_INF_CMD_FREEZE foi criado pela correção; valor da versão 5203bca1 */
++#ifndef CF_EID_INF_CMD_FREEZE
++#define CF_EID_INF_CMD_FREEZE (120)
++#endif
++
++/* Triagem (API de "antes"): CF_EID_INF_CMD_ENABLE_ENGINE foi criado pela correção; valor da versão 5203bca1 */
++#ifndef CF_EID_INF_CMD_ENABLE_ENGINE
++#define CF_EID_INF_CMD_ENABLE_ENGINE (116)
++#endif
++
++/* Triagem (API de "antes"): CF_EID_INF_CMD_ENABLE_DEQUEUE foi criado pela correção; valor da versão 5203bca1 */
++#ifndef CF_EID_INF_CMD_ENABLE_DEQUEUE
++#define CF_EID_INF_CMD_ENABLE_DEQUEUE (124)
++#endif
++
++/* Triagem (API de "antes"): CF_EID_INF_CMD_DISABLE_ENGINE foi criado pela correção; valor da versão 5203bca1 */
++#ifndef CF_EID_INF_CMD_DISABLE_ENGINE
++#define CF_EID_INF_CMD_DISABLE_ENGINE (117)
++#endif
++
++/* Triagem (API de "antes"): CF_EID_INF_CMD_DISABLE_DEQUEUE foi criado pela correção; valor da versão 5203bca1 */
++#ifndef CF_EID_INF_CMD_DISABLE_DEQUEUE
++#define CF_EID_INF_CMD_DISABLE_DEQUEUE (125)
++#endif
++
++/* Triagem (API de "antes"): CF_EID_INF_CMD_CANCEL foi criado pela correção; valor da versão 5203bca1 */
++#ifndef CF_EID_INF_CMD_CANCEL
++#define CF_EID_INF_CMD_CANCEL (122)
++#endif
++
++/* Triagem (API de "antes"): CF_EID_INF_CMD_ABANDON foi criado pela correção; valor da versão 5203bca1 */
++#ifndef CF_EID_INF_CMD_ABANDON
++#define CF_EID_INF_CMD_ABANDON (123)
++#endif
++
+ 
+ /*
+  * In order to properly instantiate buffers to pass to functions that

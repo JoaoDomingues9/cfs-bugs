@@ -1,0 +1,16 @@
+diff --git a/unit-test/cs_table_processing_tests.c b/unit-test/cs_table_processing_tests.c
+index c9be2b3..6e89484 100644
+--- a/unit-test/cs_table_processing_tests.c
++++ b/unit-test/cs_table_processing_tests.c
+@@ -34,6 +34,11 @@
+ #include "uttest.h"
+ #include "utassert.h"
+ #include "utstubs.h"
++/* Triagem (API de "antes"): CS_VAL_APP_DEF_TBL_LONG_NAME_ERR_EID foi criado pela correção; valor da versão 15e43163 */
++#ifndef CS_VAL_APP_DEF_TBL_LONG_NAME_ERR_EID
++#define CS_VAL_APP_DEF_TBL_LONG_NAME_ERR_EID 154
++#endif
++
+ 
+ /* cs_table_processing_tests globals */
+ uint8 call_count_CFE_EVS_SendEvent;

@@ -1,0 +1,41 @@
+repo,issue,triagem,resultado,tipo_assercao,categoria,nota
+osal,453,1ª (5),recuperado,comportamento,constante nova,OS_ERR_OPERATION_NOT_SUPPORTED definido no teste; OS_SelectSingle_Impl devolve 0 em vez de -38
+cFE,1020,1ª (5),não recuperado,,sem falha observável,bug só por inspeção (alinhamento); testes da refatoração
+cFE,651,1ª (5),não recuperado,,API nova,handle passa de endereço a ID de recurso; módulo novo
+osal,1432,1ª (5),não recuperado,,plataforma,código RTEMS não compilado na build native
+osal,796,1ª (5),não recuperado,,erro na lista,commit_correcao é um Apply formatting 38 commits depois; correção real sem teste
+cFE,1952,2ª (35),recuperado,comportamento,constante nova,bits CFE_SB_*_EID_BIT; o antes envia eventos que deviam ser filtrados (proteção contra recursão)
+cFE,494,2ª (35),recuperado,comportamento,constante nova,CFE_SB_NO_MSG_RECV; GetLastSenderId sem remetente válido
+CF,118,2ª (35),recuperado,comportamento,constante nova (ID de evento),a correção acrescenta 11 eventos de erro (nenhum removido): o antes não envia evento
+CF,123,2ª (35),recuperado,comportamento,constante nova (ID de evento),contador hk.counters.err não incrementa + evento em falta
+CF,473,2ª (35),recuperado,comportamento,constante nova (ID de evento),FRACO: só falha o evento informativo novo CF_EID_INF_CFDP_BUF_EXCEED
+CF,117,2ª (35),recuperado,misto,constante nova (ID de evento),o antes não envia nenhum evento informativo (CallCount CFE_EVS_SendEvent 0 == 1) + ID do evento
+CS,71,2ª (35),recuperado,misto,constante nova (ID de evento),CS_ValidateAppChecksumDefinitionTable devolve 0 em vez de CS_TABLE_ERROR + eventos
+cFE,1036,2ª (35),recuperado (compila),nao_reproduzido,nomes antigos das globais,mapeamento CFE_*_Global -> nomes antigos; nenhum teste verifica a limpeza no EarlyInit
+osal,649,2ª (35),recuperado (compila),nao_reproduzido,campos antigos,prev_cb/next_cb (ID) -> prev_ref/next_ref (índice)
+osal,390,2ª (35),não observável,,plataforma (aarch64),mesmo commit que o osal #392; adaptado e compila mas o teste de select está no osal_core_UT (excluído em aarch64)
+osal,392,2ª (35),não observável,,plataforma (aarch64),mesmo commit que o osal #390
+cFE,1123,2ª (35),não recuperado,,não é bug de comportamento,limpeza de API (global -> macro)
+cFE,1224,2ª (35),não recuperado,,não é bug de comportamento,testes de cobertura não compilavam depois da reorganização (problema de build)
+cFE,1021,2ª (35),não recuperado,,não é bug de comportamento,tipo da interface (uint32* -> CFE_ES_MemPoolBuf_t)
+sample_app,77,2ª (35),não recuperado,,não é bug de comportamento,renomeação de ficheiros/funções
+osal,1458,2ª (35),não recuperado,,não é bug de comportamento,análise estática (OS_strnlen novo)
+cFE,1073,2ª (35),não recuperado,,condição de corrida,tentado: cascata da API nova (PipeId -> ResourceID)
+cFE,950,2ª (35),não recuperado,,condição de corrida,assinaturas mudam (AppId -> ponteiro); por leitura
+cFE,295,2ª (35),não recuperado,,condição de corrida,campos e funções novos (AppTimerMsec, CFE_ES_RunAppTableScan); por leitura
+cFE,456,2ª (35),não recuperado,,condição de corrida,campos e funções novos (BackgroundPerfDumpState); por leitura
+cFE,411,2ª (35),não recuperado,,condição de corrida,o PSP da época não compila com os testes (SystemNotify); por leitura
+cFE,1419,2ª (35),não recuperado,,API nova,função nova CFE_MSG_GetNextSequenceCount; por leitura
+cFE,139,2ª (35),não recuperado,,API nova,tipo novo CFE_FS_FileWriteMetaData_t (17 ficheiros); por leitura
+cFE,663,2ª (35),não recuperado,,API nova,tipos novos em 40 ficheiros; por leitura
+osal,573,2ª (35),não recuperado,,API nova,tipo novo OS_statvfs_t e função OS_FileSysStatVolume; por leitura
+osal,104,2ª (35),não recuperado,,API nova,assinatura de OS_Milli2Ticks muda; por leitura
+osal,645,2ª (35),não recuperado,,API nova,reestruturação do idmap; por leitura
+osal,1153,2ª (35),não recuperado,,API nova,abstração nova + implementação VxWorks nova (os-impl-sockets.c); por leitura
+CF,325,2ª (35),não recuperado,,API nova,tipo novo CF_TxnStatus_t (10 ficheiros); por leitura
+CF,277,2ª (35),não recuperado,,API nova,assinatura de CF_CFDP_DecodeHeader muda; por leitura
+CF,148,2ª (35),não recuperado,,API nova,tipo dos MIDs muda (uint16 -> CFE_SB_MsgId_t); por leitura
+SC,84,2ª (35),não recuperado,,API nova,tipo novo SC_WakeupCmd_t (20 ficheiros); por leitura
+HS,85,2ª (35),não recuperado,,API nova,redesenho: monitorização movida para o PSP (hs_custom -> hs_sysmon); por leitura
+CF,120,2ª (35),não recuperado,,não exprimível no antes,configuração por canal (ack_limit/nak_limit) que o antes não tem; por leitura
+osal,697,2ª (35),não recuperado,,plataforma,correção só em código VxWorks

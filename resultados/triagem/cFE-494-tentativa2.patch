@@ -1,0 +1,16 @@
+diff --git a/fsw/cfe-core/unit-test/sb_UT.c b/fsw/cfe-core/unit-test/sb_UT.c
+index ac334f6d..1fd2ced9 100644
+--- a/fsw/cfe-core/unit-test/sb_UT.c
++++ b/fsw/cfe-core/unit-test/sb_UT.c
+@@ -39,6 +39,11 @@
+ ** Includes
+ */
+ #include "sb_UT.h"
++/* Triagem (API de "antes"): CFE_SB_NO_MSG_RECV foi criado pela correção; valor da versão 79e4bfbc */
++#ifndef CFE_SB_NO_MSG_RECV
++#define CFE_SB_NO_MSG_RECV       ((int32)0xca00000f)
++#endif
++
+ 
+ static char    cMsg[UT_MAX_MESSAGE_LENGTH];
+ 
