@@ -107,6 +107,8 @@ GitHub runner. Variables: `IMAGEM` (image tag), `JOBS` (parallel build jobs), `M
 | `requirement_cited` | requirement named in the issue or fix (or a requirements file edited by the fix) |
 | `requirement_link`, `requirement_ids` | manual link to the requirements of release v7.0.1: `cited`, `specifies`, `partial`, `none`, `no_document` |
 | `odc_type` | Orthogonal Defect Classification type of the fix |
+| `fix_flight_lines`, `fix_flight_files`, `fix_flight_hunks`, `fix_test_lines` | size of the fix (lines added + removed) in flight code and in test files |
+| `days_to_close` | days from the opening to the closing of the issue |
 | `gcc_aarch64`, `clang_aarch64`, `gcc_x86_64`, `clang_x86_64` | replay outcome per compiler and platform |
 | `core`, `judgement` | core set membership; `solid`, `weak` or `events_only` |
 | `notes` | caveats |
